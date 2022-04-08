@@ -1,0 +1,15 @@
+{
+  "name": "lightslicergpbot",
+  "version": "2.0.0",
+  "description": "Bot from actual code, not the BDFD app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "LightslicerGP on Youtube",
+  "license": "ISC",
+  "dependencies": {
+    "aoi.js": "^5.1.2"
+  }
+}
