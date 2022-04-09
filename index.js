@@ -27,13 +27,14 @@ bot.onInteractionCreate()
     channel: "$channelID[$message]",
     code: `
     $botTyping
-$description[1;$username deleted the message that said "$noMentionMessage"]
 
+
+    $color[1;#ffffff]
+    $description[1;$username deleted the message that said "$noMentionMessage"]
     `
-})// this pings if you delete a message with @everyone or a person on it 
+})// this pings if you delete a message with @everyone or a person on it  */
 
 bot.onMessageDelete()
-*/
 
 bot.command({
     name: "test",
@@ -43,10 +44,8 @@ bot.command({
     code: `
     $botTyping
     $reply[$messageID;yes]
-
-    
-    `//$setGlobalUserVar[testing;$noMentionMessage;$authorID;Bank]  $createFile[$usersBanned[$guildID;username;, ];banned.txt]
-},{//$lerefAvatar
+    `//$setGlobalUserVar[testing;$noMentionMessage;$authorID;Bank] $lerefAvatar
+},{
     name: "json",
     code:`
     $getObjectProperty[car]

@@ -36,14 +36,14 @@ module.exports = [{
   $title[1;
   Global Leaderboard
   ]
-  $description[1;$textSplitMap[leaderboard]]
+  $description[1;$textSplitMap[MoneyLeaderboard]]
 
 
 
   $textSplit[$globalUserLeaderboard[Money;asc;{top}§{tag}§{value};15;1;Bank];\n]
   `
 },{
-  name: "leaderboard",
+  name: "MoneyLeaderboard",
   type: "awaited",
   code: `
   $splitText[1]: $splitText[2] - $$numberSeparator[$splitText[3]]

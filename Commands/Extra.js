@@ -239,28 +239,6 @@ module.exports = [{
     $onlyIf[$stringStartsWith[$message;#]!=true;]
     `
 },{
-    name: "user",
-    code:`
-    $botTyping
-    $reply[$messageID;yes]
-
-
-
-    $color[1;#80bfff]
-    $title[1;
-        This user is $userTag[$noMentionMessage]!
-    ]
-
-
-
-    $onlyIf[$isNumber[$message]==true;{"embeds": "
-        {newEmbed: 
-          {title:Please put the ID of the user!}
-          {color:#80bfff}}",
-        "reply": {"messageReference": "$messageID"}
-    }]
-    `
-},{
     name: "date",
     code: `
     $botTyping
@@ -322,8 +300,20 @@ module.exports = [{
     `$interactionReply[
         $editMessage[$messageID;
             {newEmbed:
-                {title:thisshouldreplacetheembedfromearilierBUTWHYWITHEMBEDERRORSFUCKER}
                 {color:#80bfff}
+                {title:General Commands}
+                {description:General commands that give information or edit settings, some command might not be on here due to them being used only temporarily and will either be changed or deleted}
+                {field:#bot info:See all the information of the bot:yes}
+                {field:#invite:An invite link to invite the bot to your server:yes}
+                {field:#version:See if im using the Aoijs version or Bdfd version:yes}
+                {field:#ping:Check the ping of the bot:yes}
+                {field:#calc #RIGHT_BRACKET#expression#LEFT_BRACKET#:solve a simple math problem:yes}
+                {field:#date:Get today's exact date and time:yes}
+                {field:#temp:All index based string functions for an embed:yes}
+                {field:(mention the bot):Gives the bot prefix, which is #:yes}
+                {field:*#eval #RIGHT_BRACKET#code#LEFT_BRACKET#:Run code manually:yes}
+                {field:*#bot restart:Restart the bot:yes}
+                {field:#test:Testing command, code will change so function and usage will not always be the same:yes}
             }
         ;$channelID]
     ]
