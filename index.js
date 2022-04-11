@@ -23,14 +23,13 @@ bot.onMessage({
 
 bot.onInteractionCreate()
 
-/*bot.deletedCommand({
+bot.deletedCommand({
     channel: "$channelID[$message]",
     code: `
     $botTyping
 
 
-    $color[1;#ffffff]
-    $description[1;$username deleted the message that said "$noMentionMessage"]
+    $description[1;$username's message was deleted that said $message]
     `
 })// this pings if you delete a message with @everyone or a person on it  */
 
@@ -38,14 +37,23 @@ bot.onMessageDelete()
 
 bot.command({
     name: "test",
-    //description: "test DECSCRIPOPOIGN",
-    //usage: ["#test", "#test {text i guess}"],
-    //category: "Developer Command",
+    description: "test command",
+    usage: ["#test", "#test {text probably}"],
+    category: "Developer Command",
     code: `
     $botTyping
     $reply[$messageID;yes]
-    `//$setGlobalUserVar[testing;$noMentionMessage;$authorID;Bank] $lerefAvatar
-},{
+
+
+
+
+\`\`\`json
+$getObject\`\`\`
+$getObjectProperty[Birthday.Day]
+$getObjectProperty[Birthday]
+    $createObject[$getGlobalUserVar[Profile]]
+    `// $writeFile[temp.txt;this is inside the file inside the host] $createFile[this is inside the file in the message;temp.txt]
+},{// $checkContains[$toLocaleUppercase[$message[1]];January;February;March;April;May;June;July;August;September;October;November;December]
     name: "json",
     code:`
     $getObjectProperty[car]
@@ -98,11 +106,11 @@ bot.variables({
     Profile: `
         {
             "Bio": "(insert bio here)",
-            "Interests": "(insert interests here)",
-            "Birthday": [
-                "Day": 0,
+            "Birthday": {
+                "Day": 1,
                 "Month": "January"
-            ],
+            },
+            "Interests": "(insert interests here)",
             "Youtube": "https://example.com/",
             "Site": "https://example.com/"
         }

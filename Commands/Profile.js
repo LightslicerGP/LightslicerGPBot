@@ -3,15 +3,18 @@ module.exports = [{
   code: `
   $botTyping
   $reply[$messageID;yes]
+
+
+
   $color[1;#ff8080]
-  $author[1;$username[$mentioned[1]];$authorAvatar]
   $description[1;
-    Bio: $getGlobalUserVar[Bio;$mentioned[1]]
-    Birthday: $getGlobalUserVar[Birthday;$mentioned[1]]
-    Interests: $getGlobalUserVar[Interests;$mentioned[1]]
+    Bio: $getGlobalUserVar[Bio;$mentioned[1]] or $getObjectProperty[Bio]
+    Birthday: $getGlobalUserVar[Birthday;$mentioned[1]] or $getObjectProperty[Birithday.Month] $getObjectProperty[Birthday.Day]
+    Interests: $getGlobalUserVar[Interests;$mentioned[1]] or $getObjectProperty[Interests]
     [YouTube]($getGlobalUserVar[Youtube;$mentioned[1]])
     [Site]($getGlobalUserVar[Site;$mentioned[1]])
   ]
+  $createObject[$getGlobalUserVar[Profile]]
   `
 },{
   name: "profile set",
@@ -22,11 +25,11 @@ module.exports = [{
   $author[1;$username[$authorID];$authorAvatar]
   $description[1;
     You can set your
-    -bio using #profile set bio {insert your bio here}
-    -birthday #profile set birthday {insert your birtday here}
-    -interests #profile set interests {insert your interests here}
-    -youtube link #profile set youtube {insert your youtube link here}
-    -site link #profile set site {insert your site link here}
+    -bio using \`#profile set bio {insert your bio here}\`
+    -birthday \`#profile set birthday {insert your birtday here}\`
+    -interests \`#profile set interests {insert your interests here}\`
+    -youtube link \`#profile set youtube {insert your youtube link here}\`
+    -site link \`#profile set site {insert your site link here}\`
   ]
   $footer[1;
     After doing one, do #profile to see it!

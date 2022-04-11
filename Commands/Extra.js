@@ -15,7 +15,7 @@ module.exports = [{
     $color[2;#80bfff]
     $title[2;General Commands]
     $description[2;
-        General commands that give information or edit settings, some command might not be on here due to them being used only temporarily and will either be changed or deleted
+        General commands that give information or edit settings, some commands might not be on here due to them being used only temporarily and will either be changed or deleted
     ]
     $addField[2;#test;Testing command, code will change so function and usage will not always be the same;yes]
     $addField[2;*#bot restart;Restart the bot;yes]
@@ -34,7 +34,7 @@ module.exports = [{
     $color[3;#80ff80]
     $title[3;Money Commands]
     $description[3;
-        All money related commands
+        All money and economy related commands
     ]
     $addField[3;#daily;Get your daily $1k;yes]
     $addField[3;#work;Do some work and make some money;yes]
@@ -278,6 +278,60 @@ module.exports = [{
         {color:#80bfff}}",
         "reply": {"messageReference": "$messageID"}
     }]
+    `
+},{
+    name: "banned",
+    aliases: [`banlist`],
+    code: `
+    $botTyping
+    $reply[$messageID;yes]
+
+
+
+    $createFile[$textSplitMap[bannedpeople];banned.txt]
+    $createFile[$usersBanned[$guildID;yes;id;\n];banned.txt]
+    $textSplit[$usersBanned[$guildID;yes;id;\n];\n]
+    `
+},{//make wiki when you can
+    name: "bannedpeople",
+    type: "awaited",
+    code: `
+    $userTag[$message[1]]
+    `
+},{
+    name: "user",
+    code:`
+    $botTyping
+    $reply[$messageID;yes]
+
+
+
+    $color[1;#80bfff]
+    $title[1;
+        This user is $userTag[$noMentionMessage]!
+    ]
+
+
+
+    $onlyIf[$isNumber[$message]==true;{"embeds": "
+        {newEmbed: 
+          {title:Please put a valid ID of a user!}
+          {color:#80bfff}}",
+        "reply": {"messageReference": "$messageID"}
+    }]
+    `
+},{
+    name: "id",
+    code:`
+    $botTyping
+    $reply[$messageID;yes]
+
+
+
+    $color[1;#80bfff]
+    $title[1;
+        This user's ID is $findUser[$noMentionMessage;no]!
+    ]
     `
 },{
     name: "select",
