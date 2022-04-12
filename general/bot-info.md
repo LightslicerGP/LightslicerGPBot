@@ -2,29 +2,17 @@
 description: Get information about the bot
 ---
 
-# ⚙ #bot info
+# #bot info
 
-Usage:
+## Usage:
 
-```
-#bot info
-```
+{% hint style="success" %}
+\#bot info
+{% endhint %}
 
 ## Code
 
-for future me, these are the best types of syntax. choose one lol
-
-* brainf-ck
-* wolfram
-* haskell
-* haxe
-* j
-* log file
-* oz
-* smarty
-* verilog
-
-```brainfuck
+```j
 {
     name:"bot info",
     aliases: ['info'],
