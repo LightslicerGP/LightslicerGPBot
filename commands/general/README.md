@@ -8,10 +8,3 @@ layout: landing
 
 # ⚙ General
 
-{% content-ref url="help.md" %}
-[help.md](help.md)
-{% endcontent-ref %}
-
-{% content-ref url="bot-info.md" %}
-[bot-info.md](bot-info.md)
-{% endcontent-ref %}
