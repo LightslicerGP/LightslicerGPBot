@@ -282,11 +282,14 @@ $if[$round[$random[1;$math[$noMentionMessage**(1/3)];yes]]==1;you would win;you 
   `
 },{
   name: "bal reset",
-  aliases: ['reset'],
+  aliases: ['balreset'],
   code: `
   $botTyping
   $reply[$messageID;yes]
-  $resetGlobalUserVar[Money;Bank]
+
+
+
+  $setGlobalUserVar[Money;;$mentioned[1];Bank]
 
 
 
@@ -303,6 +306,12 @@ $if[$round[$random[1;$math[$noMentionMessage**(1/3)];yes]]==1;you would win;you 
   $onlyForIDs[586225258269245538;883931596758081556;{"embeds": "
     {newEmbed:
       {title:You're not LightslicerGP (nor an admin), and I (the bot) can't make you him sooo..... sorry I guess}
+      {color:#80ff80}}",
+    "reply": {"messageReference": "$messageID"}
+  }]
+  $onlyIf[$mentionedUsersCount<=1;{"embeds": "
+    {newEmbed:
+      {title:Only mention one person!}
       {color:#80ff80}}",
     "reply": {"messageReference": "$messageID"}
   }]
@@ -343,17 +352,18 @@ $if[$round[$random[1;$math[$noMentionMessage**(1/3)];yes]]==1;you would win;you 
 
 
 
-  $setGlobalUserVar[Money;$sum[$getGlobalUserVar[Money;$authorID;Bank];$random[7;121;no]];$authorID;Bank]
-
-
-
   $color[1;#80ff80]
   $title[1;
     You have done some work!
   ]
   $description[1;
-    Now you have been paid $$numberSeparator[$random[7;121;no]]. Now you have a total of $$numberSeparator[$sum[$getGlobalUserVar[Money;$authorID;Bank];$random[7;121;no]]] in your balance
+    Now you have been paid $$numberSeparator[$random[7;121;no]]. Now you have a total of $$numberSeparator[$getGlobalUserVar[Money;$authorID;Bank]] in your balance
   ]
+
+
+
+  $setGlobalUserVar[Money;$sum[$getGlobalUserVar[Money;$authorID;Bank];$random[7;121;no]];$authorID;Bank]
+  $setGlobalUserVar[Money;$sum[$getGlobalUserVar[Money;$authorID;Bank];$random[7;121;no]];$authorID;Bank]
 
 
 
@@ -365,4 +375,74 @@ $if[$round[$random[1;$math[$noMentionMessage**(1/3)];yes]]==1;you would win;you 
       "reply": {"messageReference": "$messageID"}
   }]
   `
-}]
+}]/*Alright i have figured out what the problem is but its weird to even think about.
+Okay setting the stage: you do #work and you make some money. it adds to your bank acc balance (variable = Money) in the database (database= Bank)
+```php
+{
+  name: "work",
+  code: `
+  $botTyping
+  $reply[$messageID;yes]
+  $color[1;#80ff80]
+  $title[1;
+    You have done some work!
+  ]
+  $description[1;
+    Now you have been paid $$numberSeparator[$random[7;121;no]]. Now you have a total of $$numberSeparator[$getGlobalUserVar[Money;$authorID;Bank]] in your balance
+  ]$setGlobalUserVar[Money;$sum[$getGlobalUserVar[Money;$authorID;Bank];$random[7;121;no]];$authorID;Bank]
+  $globalCooldown[30s;{"embeds": "
+      {newEmbed:
+        {title:Slow down!}
+        {description:You have to wait %time% before doing the work command again!}
+        {color:#80ff80}}",
+      "reply": {"messageReference": "$messageID"}
+  }]
+  `
+}
+```
+then you do #bal, and spam it, it shows the ***correct (and same)*** value everytime
+```php
+{
+  name: "bal",
+  code: `
+  $botTyping
+  $reply[$messageID;yes]
+  $color[1;#80ff80]
+  $title[1;
+    $username[$mentioned[1]] has $$numberSeparator[$getGlobalUserVar[Money;$mentioned[1];Bank]]
+  ]
+  $globalCooldown[5s;{"embeds":"
+    {newEmbed:
+      {title:Slow down!}
+      {description:You have to wait %time% before doing this command again!}
+      {color:#80ff80}}",
+    "reply": {"messageReference": "$messageID"}
+  }]
+  `
+}
+```
+then you do #baltop and for some reason it shows the amount you had BEFORE you did #work
+```php
+{
+  name: "bal top",
+  aliases: ['baltop'],
+  code: `
+  $botTyping
+  $reply[$messageID;yes]
+  $color[1;#80ff80]
+  $title[1;
+  Global Leaderboard
+  ]
+  $description[1;$textSplitMap[MoneyLeaderboard]]
+  $textSplit[$globalUserLeaderboard[Money;asc;{top}§{tag}§{value};15;1;Bank];\n]
+  `
+},{
+  name: "MoneyLeaderboard",
+  type: "awaited",
+  code: `
+  $splitText[1]: $splitText[2] - $$numberSeparator[$splitText[3]]
+  $textSplit[$message[1];§]
+  `
+}
+```
+*/

@@ -132,7 +132,7 @@ module.exports = [{
       }]
     `
 },{
-    name:"bot info",
+    name: "bot info",
     aliases: ['info'],
     code: `
     $botTyping
@@ -167,8 +167,8 @@ module.exports = [{
     $addField[1;Bot Owner;[$username[$botOwnerID]](https://youtube.com/c/LightslicerGP/);yes]
     `
 },{
-    name:"bot restart", 
-    code:`
+    name: "bot restart", 
+    code: `
     $botTyping
     $reply[$messageID;yes]
 
@@ -300,7 +300,7 @@ module.exports = [{
     `
 },{
     name: "user",
-    code:`
+    code: `
     $botTyping
     $reply[$messageID;yes]
 
@@ -322,7 +322,7 @@ module.exports = [{
     `
 },{
     name: "id",
-    code:`
+    code: `
     $botTyping
     $reply[$messageID;yes]
 

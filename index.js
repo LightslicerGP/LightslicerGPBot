@@ -9,7 +9,7 @@ const bot = new aoijs.Bot({
     fetchInvites: true,
     database: {
         type: "default",
-        tables: ["main","Bank"],
+        tables: ["main","Bank","People"],
         path: "./database/",
         promisify: true
     }
@@ -23,7 +23,7 @@ bot.onMessage({
 
 bot.onInteractionCreate()
 
-bot.deletedCommand({
+/* bot.deletedCommand({
     channel: "$channelID[$message]",
     code: `
     $botTyping
@@ -41,60 +41,30 @@ bot.command({
     usage: ["#test", "#test {text probably}"],
     category: "Developer Command",
     code: `
+    $getGlobalUserVar[Money;$authorID;Bank]
+
+
+
+    $onlyIf[$authorID==586225258269245538||$authorID==883931596758081556;{"embeds": "
+        {newEmbed: 
+          {title:Insufficient permission}
+          {description:You're not LightslicerGP (nor an admin), and I (the bot) can't make you him sooo..... sorry I guess}
+          {color;#ff8080}}",
+        "reply": {"messageReference": "$messageID"}
+    }]
+    `// $writeFile[temp.txt;this is inside the file inside the host] $createFile[this is inside the file in the message;temp.txt]
+},{// 
+    name: "json",
+    code: `
     $botTyping
     $reply[$messageID;yes]
 
 
 
-
-\`\`\`json
+    \`\`\`json
 $getObject\`\`\`
-$getObjectProperty[Birthday.Day]
-$getObjectProperty[Birthday]
-    $createObject[$getGlobalUserVar[Profile]]
-    `// $writeFile[temp.txt;this is inside the file inside the host] $createFile[this is inside the file in the message;temp.txt]
-},{// $checkContains[$toLocaleUppercase[$message[1]];January;February;March;April;May;June;July;August;September;October;November;December]
-    name: "json",
-    code:`
-    $getObjectProperty[car]
-    $createObject[$getVar[ItemCount]]
-    
-    $getObject
-    $addObjectProperty[true/false;false]
-    $addObjectProperty[true/false;true]
-    $addObjectProperty[onlynumber;19209012]
-    $addObjectProperty[fact;Lightslicergp is better]
-    $addObjectProperty[myth;Kuba is cool]
-    $createObject[{}]
+        $createObject[$getGlobalUserVar[Profile]]
     `
-})
-
-bot.command({
-    name: "create",
-    code: `
-    $createApplicationCommand[$guildID;aoijs;
-        a cool slash command for aoi.js;true]
-        created, i think
-    `
-    /*
-        Code Breakdown:
-    This will make a slashcommand named "aoijs" (meaning you'd do /aoijs),
-    the description will say "a cool slash command for aoijs"
-    */
-})
-
-/*
-bot.reactionRemoveCommand({
-    channel: "590677318524076043", 
-    code: `
-    $username unreacted.. i think
-    `
-})
-
-bot.onReactionRemove() */
-
-bot.variables({
-    messages: 0 //Making the variable
 })
 
 bot.variables({
@@ -103,18 +73,6 @@ bot.variables({
     Birthday: `(insert birthday here)`,
     Youtube: `https://example.com/`,
     Site: `https://example.com/`,
-    Profile: `
-        {
-            "Bio": "(insert bio here)",
-            "Birthday": {
-                "Day": 1,
-                "Month": "January"
-            },
-            "Interests": "(insert interests here)",
-            "Youtube": "https://example.com/",
-            "Site": "https://example.com/"
-        }
-    `,
     TempJson: `
         {
             "name": "insertnamehere",
@@ -140,11 +98,26 @@ bot.variables({
     }, 'main'
 )
 
-bot.variables(
-    {
+bot.variables({
+    Profile: `
+       {
+           "Bio": "(insert bio here)",
+           "Birthday": {
+               "Day": 1,
+               "Month": "January"
+           },
+           "Interests": "(insert interests here)",
+           "Youtube": "https://example.com/",
+           "Site": "https://example.com/"
+       }
+   `
+   }, 'People'
+)
+
+bot.variables({
         Money: 0,
     }, 'Bank'
-) 
+)
 
 bot.readyCommand({
     channel: "",

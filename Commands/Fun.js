@@ -37,8 +37,9 @@ module.exports = [{
         LightslicerGPBot responds:
     ]
     $description[1;
-        $jsonRequest[https://some-random-api.ml/chatbot?key=ob9quL2wwhm0icE6fjhJvc46qj5HChIbNbLJuBHyWwfmx2xkIfaCND0cXdqXntTE&message=$replaceText[$message; ;%20];response;no response given, sad]
+        $jsonRequest[https://some-random-api.ml/chatbot?key=$getObjectProperty[apiToken]&message=$replaceText[$message; ;%20];response;no response given, sad]
     ]
+    $createObject[$readFile[./config.json]]
 
 
 
@@ -52,7 +53,7 @@ module.exports = [{
     `
 },{
     name: "tweet",
-    code:`
+    code: `
     $botTyping
     $reply[$messageID;yes]
 
@@ -80,7 +81,7 @@ module.exports = [{
     ` //$log[https://some-random-api.ml/canvas/tweet?username=$username[$authorID]&displayname=$username[$authorID]&avatar=$replaceText[$authorAvatar;webp;png]&comment=$replaceText[$message; ;%20]]
 },{
     name: "animal",
-    code:`
+    code: `
     $botTyping
     $reply[$messageID;yes]
 
@@ -99,7 +100,7 @@ List of animals you can do:
     `
 },{
     name: "animal dog",
-    code:`
+    code: `
     $botTyping
     $reply[$messageID;yes]
 
@@ -118,7 +119,7 @@ List of animals you can do:
     `
 },{
     name: "animal cat",
-    code:`
+    code: `
     $botTyping
     $reply[$messageID;yes]
 
@@ -137,7 +138,7 @@ List of animals you can do:
     `
 },{
     name: "animal bird",
-    code:`
+    code: `
     $botTyping
     $reply[$messageID;yes]
 
