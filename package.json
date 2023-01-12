@@ -10,6 +10,6 @@
   "author": "LightslicerGP on Youtube",
   "license": "ISC",
   "dependencies": {
-    "aoi.js": "^5.1.2"
+    "aoi.js": "^6.0.3"
   }
 }

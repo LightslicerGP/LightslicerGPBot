@@ -6,8 +6,8 @@ module.exports = [{
 
 
 
-  $color[1;#ff8080]
-  $description[1;
+  $color[#ff8080]
+  $description[
 **Bio:** $getObjectProperty[Bio]
 **Birthday:** $getObjectProperty[Birthday.Month] $ordinal[$getObjectProperty[Birthday.Day]]
 **Interests:** $getObjectProperty[Interests]
@@ -19,7 +19,7 @@ module.exports = [{
 
   $createObject[$getGlobalUserVar[Profile;$mentioned[1];People]
   `
-},{
+}, {
   name: "profile set",
   code: `
   $botTyping
@@ -27,8 +27,8 @@ module.exports = [{
 
 
 
-  $color[1;#ff8080]
-  $description[1;
+  $color[#ff8080]
+  $description[
     You can set your
     -bio using \`#profile set bio {bio}\`
     -birthday \`#profile set birthday {month} {day}\`
@@ -37,7 +37,7 @@ module.exports = [{
     -site link \`#profile set site {site link}\`
   ]
   `
-},{
+}, {
   name: "profile set bio",
   code: `
   $botTyping
@@ -45,24 +45,24 @@ module.exports = [{
 
 
 
-  $setGlobalUserVar[Profile;$getObject;$authorID]
-  $addObjectProperty[Bio;$message]
+  $createObject[$getGlobalUserVar[Profile;$authorID;People]]
 
 
 
-  $color[1;#ff8080]
-  $description[1;
+  $color[#ff8080]
+  $description[
     Your profile bio is now: $message
   ]
-  $footer[1;
+  $footer[
     Before it was: $getObjectProperty[Bio]
   ]
 
 
 
-  $createObject[$getGlobalUserVar[Profile;$authorID;People]]
+  $addObjectProperty[Bio;$message]
+  $setGlobalUserVar[Profile;$getObject;$authorID;People]
   `
-},{
+}, {
   name: "profile set birthday",
   code: `
   $botTyping
@@ -70,20 +70,20 @@ module.exports = [{
 
 
 
-  $setGlobalUserVar[Profile;$getObject;$authorID;People]
   $addObjectProperty[Birthday;
     {
       "Day" : $message[2],
       "Month" : "$toLocaleUppercase[$message[1]]"
     }]
+    $setGlobalUserVar[Profile;$getObject;$authorID;People]
 
 
 
-  $color[1;#ff8080]
-  $description[1;
+  $color[#ff8080]
+  $description[
     Your profile birthday is now: $toLocaleUppercase[$message[1]] $ordinal[$message[2]]
   ]
-  $footer[1;
+  $footer[
     Before it was: $getObjectProperty[Birthday.Month] $ordinal[$getObjectProperty[Birthday.Day]]
   ]
 
@@ -106,7 +106,7 @@ module.exports = [{
     "reply": {"messageReference": "$messageID"}
   }]
   `
-},{
+}, {
   name: "profile set interests",
   code: `
   $botTyping
@@ -119,11 +119,11 @@ module.exports = [{
 
 
 
-  $color[1;#ff8080]
-  $description[1;
+  $color[#ff8080]
+  $description[
     Your profile interests is now: $message
   ]
-  $footer[1;
+  $footer[
     Before it was: $getObjectProperty[Interests]
   ]
 
@@ -140,7 +140,7 @@ module.exports = [{
     "reply": {"messageReference": "$messageID"}
   }]
   `
-},{
+}, {
   name: "profile set youtube",
   code: `
   $botTyping
@@ -153,11 +153,11 @@ module.exports = [{
 
 
 
-  $color[1;#ff8080]
-  $description[1;
+  $color[#ff8080]
+  $description[
     Your profile bio is now: $message
   ]
-  $footer[1;
+  $footer[
     Before it was: $getObjectProperty[Bio]
   ]
 
@@ -165,12 +165,12 @@ module.exports = [{
 
   $createObject[$getGlobalUserVar[Profile;$authorID;People]]
   `
-},{
+}, {
   name: "profile set site",
   code: `
   $botTyping
   $reply[$messageID;yes]
-  $color[1;#ff8080]
+  $color[#ff8080]
   $if[$isValidLink[$noMentionMessage]==true;
     Your profile site link is now: $noMentionMessage
     $setGlobalUserVar[Site;$noMentionMessage;$authorID];
