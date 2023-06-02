@@ -14,7 +14,7 @@ description: Evaluate an AOIJS expression
 
 ## Code
 
-```j
+```oz
 {
     name: "eval",
     code: `

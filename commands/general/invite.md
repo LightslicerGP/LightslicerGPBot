@@ -12,7 +12,7 @@ description: Invite the bot to your own server
 
 ## Code
 
-```j
+```oz
 {
     name: "invite",
     code: `
