@@ -1,8 +1,9 @@
-module.exports = [{
+module.exports = [
+  {
     name: "bal set",
-        aliases: ['setbal'],
-            code: `
-    $botTyping
+    aliases: ["setbal"],
+    code: `
+    $clientTyping
     $reply[$messageID;yes]
     $setGlobalUserVar[Money;$truncate[$noMentionMessage];$mentioned[1];Bank]
   
@@ -30,5 +31,6 @@ module.exports = [{
         {color:#80ff80}}",
       "reply": {"messageReference": "$messageID"}
     }]
-    `
-}]
+    `,
+  },
+];

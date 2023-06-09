@@ -16,7 +16,7 @@ description: Gives which version of the bot you are using
 {
     name: "version",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 

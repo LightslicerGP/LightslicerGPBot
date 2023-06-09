@@ -16,7 +16,7 @@ description: Invite the bot to your own server
 {
     name: "invite",
     code: `
-    $botTyping    
+    $clientTyping    
     $reply[$messageID;yes]
 
 

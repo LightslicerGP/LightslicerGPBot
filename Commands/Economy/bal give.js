@@ -1,8 +1,9 @@
-module.exports = [{
+module.exports = [
+  {
     name: "bal give",
-    aliases: ['give'],
+    aliases: ["give"],
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
   
   
@@ -60,12 +61,13 @@ module.exports = [{
     ` /*
     {"embeds": "EMBEDSTUF",
       "reply": {"messageReference": "$messageID"}
-    }*/
-}, {
+    }*/,
+  },
+  {
     name: "yes",
     type: "awaited",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
   
   
@@ -79,12 +81,13 @@ module.exports = [{
     $title[
       Alrighty, you gave $$awaitData[amount] to $userTag[$awaitData[user]]!
     ]
-    `
-}, {
+    `,
+  },
+  {
     name: "no",
     type: "awaited",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
   
   
@@ -93,5 +96,6 @@ module.exports = [{
     $title[
       Alrighty, I aborted the transaction for ya :D
     ]
-    `
-}]
+    `,
+  },
+];

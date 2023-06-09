@@ -1,70 +1,139 @@
-const aoijs = require("aoi.js")
-const { token } = require(`./config.json`)
+const aoijs = require("aoi.js");
+const { AoiClient } = require("aoi.js");
+const { token } = require(`./config.json`);
 
-const bot = new aoijs.AoiClient({
-    token: token,
-    prefix: "#",
-    intents: ["MessageContent", "Guilds", "GuildMessages"],
-    cache: false,
-    respondOnEdit: {
-        command: false,
-        alwaysExecute: false,
-        nonPrefixed: false,
-        timeLimit: 60000
+const bot = new AoiClient({
+  token: token,
+  prefix: "#",
+  intents: [
+    "MessageContent",
+    "Guilds",
+    "GuildMessages",
+    "GuildMembers",
+    "GuildBans",
+    "GuildEmojisAndStickers",
+    //"GuildIntegrations",
+    "GuildWebhooks",
+    "GuildInvites",
+    "GuildVoiceStates",
+    "GuildPresences",
+    "GuildMessageReactions",
+    "GuildMessageTyping",
+    "DirectMessages",
+    //"DirectMessageReactions",
+    //"DirectMessageTyping",
+  ],
+  events: [
+    "onMessage",
+    "onMessageDelete",
+    "onMessageUpdate",
+    "onMessageDeleteBulk",
+    "onReactionAdd",
+    "onReactionRemove",
+    "onReactionRemoveAll",
+    "onInviteCreate",
+    "onInviteDelete",
+    "onGuildJoin",
+    "onGuildLeave",
+    "onGuildUpdate",
+    "onGuildUnavailable",
+    "onRoleCreate",
+    "onRoleUpdate",
+    "onRoleDelete",
+    "onChannelCreate",
+    "onChannelUpdate",
+    "onChannelDelete",
+    "onChannelPinsUpdate",
+    "onStageInstanceCreate",
+    "onStageInstanceUpdate",
+    "onStageInstanceDelete",
+    "onThreadCreate",
+    "onThreadUpdate",
+    "onThreadDelete",
+    "onThreadListSync",
+    "onThreadMemberUpdate",
+    "onThreadMembersUpdate",
+    "onEmojiCreate",
+    "onEmojiDelete",
+    "onEmojiUpdate",
+    "onStickerCreate",
+    "onStickerDelete",
+    "onStickerUpdate",
+    "onBanAdd",
+    "onBanRemove",
+    "onVoiceStateUpdate",
+    "onWebhookUpdate",
+    "onJoin",
+    "onLeave",
+    "onMemberUpdate",
+    "onMemberAvailable",
+    "onMembersChunk",
+    "onPresenceUpdate",
+    "onTypingStart",
+    "onUserUpdate",
+    "onInteractionCreate",
+    "onApplicationCmdPermsUpdate",
+    "onVariableCreate",
+    "onVariableDelete",
+    "onVariableUpdate",
+    //"onShardDisconnect",
+    //"onShardError",
+    //"onShardReady",
+    //"onShardReconnecting",
+    //"onShardResume",
+  ],
+  database: {
+    type: "aoi.db",
+    db: require("aoi.db"),
+    tables: ["main", "Bank", "People"],
+    path: "./database/",
+    extraOptions: {
+      dbType: "KeyValue",
     },
-    suppressAllErrors: false,
-    autoUpdate: true,
-    mobilePlatform: false,
-    database: {
-        db: require("dbdjs.db"),
-        type: "dbdjs.db",
-        path: "./database/",
-        tables: ["main", "Bank", "People"],
-        promisify: true
-    }
-})
+  },
+  guildOnly: false,
+});
 
-new aoijs.LoadCommands(bot).load(bot.cmd, './Commands/', false)
+new aoijs.LoadCommands(bot).load(bot.cmd, "./Commands/", false);
 
-bot.onMessage({
-    guildOnly: false
-})
-
-bot.onInteractionCreate() // Allows to create slash commands
+//DEPRICATED 6/4/23 9:43 pm
+//bot.onInteractionCreate(); // Allows to create slash commands
 //bot.onJoined() // Allows to log users joining servers
 //bot.onLeave() // Allows to log users leaving servers
 //bot.onBanAdd() // Allows to log user bans from servers
 //bot.onBanRemove() // Allows to log users being unbanned from servers
+//bot.onMessageDelete();
 
 /* bot.deletedCommand({
     channel: "$channelID[$message]",
     code: `
-    $botTyping
+    $clientTyping
 
 
     $description[$username's message was deleted that said $message]
     `
 })// this pings if you delete a message with @everyone or a person on it  */
 
-bot.onMessageDelete()
-
-bot.command({
+bot.command(
+  {
     name: "test",
     description: "test command",
     usage: ["#test", "#test {text probably}"],
     category: "Developer Command",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
     
     Here:
     $getGlobalUserVar[Profile;$authorID;People]
-    `//https://discord.com/channels/773352845738115102/1002206443979673731/1013860375348924476
+    `, //https://discord.com/channels/773352845738115102/1002206443979673731/1013860375348924476
     // $writeFile[temp.txt;this is inside the file inside the host] $createFile[this is inside the file in the message;temp.txt]
-}, {// 
+  },
+  {
+    //
     name: "json",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 
@@ -72,10 +141,39 @@ bot.command({
     \`\`\`json
 $getObject\`\`\`
         $createObject[$getGlobalUserVar[Profile]]
-    `
-})
+    `,
+  }
+);
 
-bot.variables({
+bot.command({
+  name: "add-select-menu",
+  code: `
+Select an option.
+
+$addSelectMenu[1;yourCustomID;This is a placeholder!;1;1;false;A Option:Description of option B:anotherCustomID:false;B Option:Description of option B:andAnotherCustomID:true]
+`,
+});
+
+bot.interactionCommand({
+  name: "yourCustomID",
+  prototype: "selectMenu",
+  code: `
+$interactionReply[Hello! :);;;;everyone;false]
+$onlyIf[$interactionData[values[0]]==anotherCustomID;]
+`,
+});
+
+bot.interactionCommand({
+  name: "yourCustomID",
+  prototype: "selectMenu",
+  code: `
+$interactionReply[Hello! :);;;;everyone;false]
+$onlyIf[$interactionData[values[0]]==andAnotherCustomID;]
+`,
+});
+
+bot.variables(
+  {
     Bio: `(insert bio here)`,
     Interests: `(insert interests here)`,
     Birthday: `(insert birthday here)`,
@@ -102,11 +200,13 @@ bot.variables({
             "phone": 2,
             "car": 100
         }
-    `
-}, 'main'
-)
+    `,
+  },
+  "main"
+);
 
-bot.variables({
+bot.variables(
+  {
     Profile: `
        {
            "Bio": "(insert bio here)",
@@ -118,25 +218,28 @@ bot.variables({
            "Youtube": "https://example.com/",
            "Site": "https://example.com/"
        }
-   `
-}, 'People'
-)
+   `,
+  },
+  "People"
+);
 
-bot.variables({
+bot.variables(
+  {
     Money: 0,
-}, 'Bank'
-)
+  },
+  "Bank"
+);
 
 bot.readyCommand({
-    channel: "",
-    code: `
-    $log[Ready on $userTag[$clientID] - $parseDate[$math[$dateStamp-18000000];date]]
-    `
-})//18000000 = winter, 1400000 = summer
+  channel: "",
+  code: `
+    $log[Ready on $userTag[$clientID] - $parseDate[$math[$dateStamp-14400000];date]]
+    `,
+}); //18000000 = winter, 14400000 = summer
 
 bot.status({
-    status: "online", // options: online, idle, dnd, invisible
-    type: "COMPETING", // options: WATCHING, PLAYING, LISTENING, COMPETING, STREAMING (if you choose streaming, you can also add the url: '' property)
-    text: "On $serverCount servers, and made by LightslicerGP#2125, prefix is #", //Whatever text you want, you can use $serverCount and $allMembersCount too.
-    time: 10 //If you want multiple statuses add the time property for how long each status will be until it switches.
-})
+  status: "online", // options: online, idle, dnd, invisible
+  type: "COMPETING", // options: WATCHING, PLAYING, LISTENING, COMPETING, STREAMING (if you choose streaming, you can also add the url: '' property)
+  text: "On $serverCount servers, and made by LightslicerGP#2125, prefix is #", //Whatever text you want, you can use $serverCount and $allMembersCount too.
+  time: 10, //If you want multiple statuses add the time property for how long each status will be until it switches.
+});

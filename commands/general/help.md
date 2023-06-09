@@ -16,7 +16,7 @@ description: Gives all the commands and their usages
 {
     name: "help",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
     $color[1;#2f3136]

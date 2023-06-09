@@ -1,6 +1,8 @@
-module.exports = [{
-  name: "pet",
-  code: `
+module.exports = [
+  {
+    name: "pet",
+    code: `
   test
-  `
-}]
+  `,
+  },
+];

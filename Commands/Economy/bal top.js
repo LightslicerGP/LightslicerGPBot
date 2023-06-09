@@ -1,8 +1,9 @@
-module.exports = [{
+module.exports = [
+  {
     name: "bal top",
-    aliases: ['baltop'],
+    aliases: ["baltop"],
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
   
   
@@ -16,12 +17,14 @@ module.exports = [{
   
   
     $textSplit[$globalUserLeaderboard[Money;asc;{top}§{tag}§{value};15;1;Bank];\n]
-    `
-}, {
+    `,
+  },
+  {
     name: "MoneyLeaderboard",
     type: "awaited",
     code: `
     $splitText[1]: $splitText[2] - $$numberSeparator[$splitText[3]]
     $textSplit[$message[1];§]
-    `
-}]
+    `,
+  },
+];

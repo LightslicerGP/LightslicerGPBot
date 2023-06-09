@@ -18,7 +18,7 @@ description: Evaluate an AOIJS expression
 {
     name: "eval",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 

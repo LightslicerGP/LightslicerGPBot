@@ -1,7 +1,9 @@
-module.exports = [{
-  name: "work",
-  code: `
-  $botTyping
+module.exports = [
+  //found it was fixed on my birthday 2023! what a nice present :D
+  {
+    name: "work",
+    code: `
+  $clientTyping
   $reply[$messageID;yes]
 
 
@@ -25,11 +27,12 @@ module.exports = [{
         {color:#80ff80}}",
       "reply": {"messageReference": "$messageID"}
   }]
-  `
-}]
+  `,
+  },
+];
 
 /*
-$botTyping
+$clientTyping
 $reply[$messageID;yes]
 
 

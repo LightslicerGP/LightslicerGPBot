@@ -17,7 +17,7 @@ description: Get information about the bot
     name:"bot info",
     aliases: ['info'],
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 

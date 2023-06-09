@@ -22,20 +22,11 @@ client.on('messageReactionRemove', (reaction, user) => {
 
 client.login(token);*/
 
-
-
-
-
-
-
-
-
-
 /* ARCHIVED COMMAND MODULES
 {
     name: "help",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
     $color[1;#2f3136]

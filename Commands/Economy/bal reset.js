@@ -1,8 +1,9 @@
-module.exports = [{
+module.exports = [
+  {
     name: "bal reset",
-    aliases: ['balreset'],
+    aliases: ["balreset"],
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
   
   
@@ -33,5 +34,6 @@ module.exports = [{
         {color:#80ff80}}",
       "reply": {"messageReference": "$messageID"}
     }]
-    `
-}]
+    `,
+  },
+];

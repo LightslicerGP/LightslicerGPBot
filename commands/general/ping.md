@@ -16,7 +16,7 @@ description: Get the ping of the bot
 {
     name: "ping",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 

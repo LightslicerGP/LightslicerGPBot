@@ -1,7 +1,9 @@
-module.exports = [{//when doing the cooldown it shows {"embeds":"                               my id is 586225258269245538 :D
+module.exports = [
+  {
+    //when doing the cooldown it shows {"embeds":"                               my id is 586225258269245538 :D
     name: "bal",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
   
   
@@ -20,5 +22,6 @@ module.exports = [{//when doing the cooldown it shows {"embeds":"               
         {color:#80ff80}}",
       "reply": {"messageReference": "$messageID"}
     }]
-    `
-}]
+    `,
+  },
+];

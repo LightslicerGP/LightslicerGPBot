@@ -1,7 +1,9 @@
-module.exports = [{//when doing this, doing #bal uses the mainsql not banksql, untill you do #baltop or #balset then it fixes?????
+module.exports = [
+  {
+    //when doing this, doing #bal uses the mainsql not banksql, untill you do #baltop or #balset then it fixes?????
     name: "daily",
     code: `
-  $botTyping
+  $clientTyping
   $reply[$messageID;yes]
 
 
@@ -25,5 +27,6 @@ module.exports = [{//when doing this, doing #bal uses the mainsql not banksql, u
         {color:#80ff80}}",
       "reply": {"messageReference": "$messageID"}
   }]
-  `
-}]
+  `,
+  },
+];

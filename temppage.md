@@ -10,7 +10,7 @@ BrainFruck
 {
     name: "calc",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 
@@ -41,7 +41,7 @@ wolfram
 {
     name: "calc",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 
@@ -72,7 +72,7 @@ haskell
 {
     name: "calc",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 
@@ -103,7 +103,7 @@ haxe
 {
     name: "calc",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 
@@ -134,7 +134,7 @@ j
 {
     name: "calc",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 
@@ -165,7 +165,7 @@ log file
 {
     name: "calc",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 
@@ -196,7 +196,7 @@ oz
 {
     name: "calc",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 
@@ -227,7 +227,7 @@ smarty
 {
     name: "calc",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 
@@ -258,7 +258,7 @@ verilog
 {
     name: "calc",
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
 
 

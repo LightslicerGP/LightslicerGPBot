@@ -1,8 +1,10 @@
-module.exports = [{//broken
+module.exports = [
+  {
+    //broken
     name: "bal gamble",
-    aliases: ['gamble'],
+    aliases: ["gamble"],
     code: `
-    $botTyping
+    $clientTyping
     $reply[$messageID;yes]
     
     
@@ -88,8 +90,9 @@ module.exports = [{//broken
           {color:#80ff80}}",
         "reply": {"messageReference": "$messageID"}
     }]
-    `
-}]
+    `,
+  },
+];
 /*
 
 ;{"embeds": " 
