@@ -12,7 +12,7 @@ description: Get information about the bot
 
 ## Code
 
-```j
+```oz
 {
     name:"bot info",
     aliases: ['info'],

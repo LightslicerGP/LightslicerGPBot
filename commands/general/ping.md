@@ -12,7 +12,7 @@ description: Get the ping of the bot
 
 ## Code
 
-```j
+```oz
 {
     name: "ping",
     code: `

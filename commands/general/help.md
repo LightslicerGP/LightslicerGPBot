@@ -12,7 +12,7 @@ description: Gives all the commands and their usages
 
 ## Code
 
-```j
+```oz
 {
     name: "help",
     code: `

@@ -12,7 +12,7 @@ description: Gives which version of the bot you are using
 
 ## Code
 
-```j
+```oz
 {
     name: "version",
     code: `
