@@ -18,7 +18,7 @@ description: Get information about the bot
     aliases: ["info"],
     code: `
       $clientTyping
-      $reply[$messageID;yes]
+      $reply[$messageID;true]
   
   
   
@@ -31,22 +31,22 @@ description: Get information about the bot
   
   
       $image[$userAvatar[$clientID]]
-      $addField[Bot Avatar; :arrow_down: Here you go!;yes]
-      $addField[Node version:;$nodeVersion;yes]
-      $addField[Full RAM Usage;$ram[rss];yes]
-      $addField[Full CPU Usage;$cpu[os];yes]
-      $addField[Bot RAM Usage;$ram[heapUsed];yes]
-      $addField[Bot CPU Usage;$cpu[process];yes]
-      $addField[Bot Name;$username[$clientID];yes]
-      $addField[Bot Message Received Ping;$messagePing;yes]
-      $addField[Bot Database Ping;$dbPingms;yes]
-      $addField[Bot Ping;$pingms;yes]
-      $addField[Bot Uptime;$uptime;yes]
-      $addField[Commands Count;$commandsCount;yes]
-      $addField[Server Count;$serverCount;yes]
-      $addField[User Count;$allMembersCount;yes]
-      $addField[Bot Creation Date/Time;$creationDate[698733140939898957;date] (yea I know, 3 am lmao);yes]
-      $addField[Bot Owner;[$username[$botOwnerID]](https://youtube.com/c/LightslicerGP/);yes]
+      $addField[Bot Avatar; :arrow_down: Here you go!;true]
+      $addField[Node version:;$nodeVersion;true]
+      $addField[Full RAM Usage;$ram[rss];true]
+      $addField[Full CPU Usage;$cpu[os];true]
+      $addField[Bot RAM Usage;$ram[heapUsed];true]
+      $addField[Bot CPU Usage;$cpu[process];true]
+      $addField[Bot Name;$username[$clientID];true]
+      $addField[Bot Message Received Ping;$messagePing;true]
+      $addField[Bot Database Ping;$dbPingms;true]
+      $addField[Bot Ping;$pingms;true]
+      $addField[Bot Uptime;$uptime;true]
+      $addField[Commands Count;$commandsCount;true]
+      $addField[Server Count;$serverCount;true]
+      $addField[User Count;$allMembersCount;true]
+      $addField[Bot Creation Date/Time;$creationDate[698733140939898957;date] (yea I know, 3 am lmao);true]
+      $addField[Bot Owner;[$username[$botOwnerID]](https://youtube.com/c/LightslicerGP/);true]
       `,
   }
 ```

@@ -17,7 +17,7 @@ description: Returns the current date
     name: "date",
     code: `
       $clientTyping
-      $reply[$messageID;yes]
+      $reply[$messageID;true]
   
   
   

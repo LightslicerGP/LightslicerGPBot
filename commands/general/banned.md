@@ -14,26 +14,29 @@ description: Gives a list of banned people on the server
 
 ```oz
   {
-    //Banned reason doesnt work
     name: "banned",
     aliases: [`banlist`],
     code: `
       $clientTyping
-      $reply[$messageID;yes]
+      $reply[$messageID;true]
   
   
   
-      $usersBanned[$guildID;yes;id;\n]
-      $getBanReason[$guildID;$usersBanned[$guildID;yes;id];\n]
-  
+      $color[#80bfff]
+      $title[Banned Users]
+      $description[
+        $textSplitMap[bannedpeople]
+      ]
+
+      $createFile[$usersBanned[$guildID;true;id;\n];banned_ids.txt]
+      $textSplit[$usersBanned[$guildID;true;id;§];§]
       `,
   },
   {
-    //make wiki when you can $createFile[$textSplitMap[bannedpeople];banned_usernames.txt]    $createFile[$usersBanned[$guildID;yes;id;\n];banned_ids.txt] $textSplit[$usersBanned[$guildID;yes;id;\n], for $getBanReason[$guildID;$usersBanned[$guildID;yes;id]];\n]
     name: "bannedpeople",
     type: "awaited",
     code: `
-    $userTag[$message[1]]
+    $userTag[$message[1]] \`($message[1])\` - $getBanReason[$guildID;$message[1]]
     `,
   }
 ```

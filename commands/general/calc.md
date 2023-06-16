@@ -7,19 +7,20 @@ description: Calculate a math expression
 ## Usage
 
 {% hint style="success" %}
-\#calc {expression}
+\#calc \[expression]
 
-* {expression} - required
+* \[expression] - required
 {% endhint %}
 
 ## Code
 
 ```oz
   {
+    //DONT GET RID OF INDEX!!!!!
     name: "calc",
     code: `
       $clientTyping
-      $reply[$messageID;yes]
+      $reply[$messageID;true]
   
   
   

@@ -7,9 +7,9 @@ description: Evaluate an AOIJS expression
 ## Usage
 
 {% hint style="success" %}
-\#eval {AOIJS expression}
+\#eval \[AOIJS expression]
 
-* {AOIJS expression} - required
+* \[AOIJS expression] - required
 {% endhint %}
 
 ## Code
@@ -19,7 +19,7 @@ description: Evaluate an AOIJS expression
     name: "eval",
     code: `
       $clientTyping
-      $reply[$messageID;yes]
+      $reply[$messageID;true]
   
   
   

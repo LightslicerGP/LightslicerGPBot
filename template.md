@@ -7,10 +7,10 @@ description: Future me, use this as a template for all the commands
 ## Usage
 
 {% hint style="success" %}
-\#template {paramater 1} \[paramater 2]
+\#template \[paramater 1] {paramater 2}
 
-* {paramater 1} - required
-* \[paramater 2] - optional
+* \[paramater 1] - required
+* {paramater 2} - optional
 {% endhint %}
 
 ## Code

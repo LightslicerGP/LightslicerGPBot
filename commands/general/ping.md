@@ -13,18 +13,18 @@ description: Get the ping of the bot
 ## Code
 
 ```oz
-{
+  {
     name: "ping",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
 
 
     
-    $color[1;#80bfff]
-    $title[1;
+    $color[#80bfff]
+    $title[
         Pong! $pingms
     ]
-    `
-}
+    `,
+  }
 ```
