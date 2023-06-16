@@ -13,8 +13,7 @@ module.exports = [
       Are you sure you want to send $$numberSeparator[$truncate[$noMentionMessage]] to $username[$mentioned[1]]? Yes/No
     ]
     
-    $awaitMessages[$channelID;$authorID;
-      10s;true,y,false,n;true,true,false,false;{"embeds": "
+    $awaitMessages[$channelID;$authorID;10s;yes,y,no,n;yes,yes,no,no;{"embeds": "
         {newEmbed:
           {title:No reply, aborted transaction}
           {color:#80ff80}}",
@@ -58,10 +57,7 @@ module.exports = [
         {color:#80ff80}}",
       "reply": {"messageReference": "$messageID"}
     }]
-    ` /*
-    {"embeds": "EMBEDSTUF",
-      "reply": {"messageReference": "$messageID"}
-    }*/,
+    `,
   },
   {
     name: "yes",

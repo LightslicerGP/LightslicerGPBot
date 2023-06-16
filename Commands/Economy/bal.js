@@ -1,6 +1,5 @@
 module.exports = [
   {
-    //when doing the cooldown it shows {"embeds":"                               my id is 586225258269245538 :D
     name: "bal",
     code: `
     $clientTyping
