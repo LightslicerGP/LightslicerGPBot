@@ -4,7 +4,7 @@ module.exports = [
     aliases: ["baltop"],
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
   
   
   

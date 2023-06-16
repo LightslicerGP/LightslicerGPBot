@@ -5,7 +5,70 @@ module.exports = [
     aliases: ["gamble"],
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
+    
+    
+    
+    $color[#80ff80]
+    $title[
+      Gambleing...
+    ]
+    $description[
+      You gambled $$numberSeparator[$truncate[$noMentionMessage]] with a $round[$math[(1/($truncate[$noMentionMessage]**(1/3)))*100]]% chance of tripleing! Lets see if you won in 5...
+      $if[
+        $random[0;1;true;false]<=$math[(1/($truncate[$noMentionMessage]**(1/3)))];
+        true;
+        false
+      ]
+    ]
+    
+  
+  
+    
+    $onlyIf[$noMentionMessage!=0;{"embeds": " 
+      {newEmbed:
+        {title:Cannot gamble $0!}
+        {color:#80ff80}}",
+      "reply": {"messageReference": "$messageID"}
+      }]
+      $onlyIf[$checkContains[$noMentionMessage;-]==false;{"embeds":"
+      {newEmbed:
+        {title:Cannot gamble negetive amounts!}
+        {color:#80ff80}}",
+        "reply": {"messageReference": "$messageID"}
+      }]
+        $onlyIf[$noMentionMessage<=$getGlobalUserVar[Money;$authorID;Bank];{"embeds": " 
+        {newEmbed:
+          {title:You do not have that much to gamble!}
+          {color:#80ff80}}",
+        "reply": {"messageReference": "$messageID"}
+      }]
+      $onlyIf[$isNumber[$noMentionMessage]==true;{"embeds": "
+        {newEmbed:
+          {title:Input a valid number!}
+          {color:#80ff80}}",
+        "reply": {"messageReference": "$messageID"}
+      }]
+    `,
+  },
+];
+/*
+
+;{"embeds": " 
+  {newEmbed:
+    {title:ganbgalbsblkgklbsbakgbakls}
+    {description:$if[$round[$random[1;$math[$noMentionMessage**(1/3)];true]]==1;you would win;you wouldnt win]}
+    {color:#80ff80}}",
+  "reply": {"messageReference": "$messageID"}
+  }]
+
+$if[$round[$random[1;$math[$noMentionMessage**(1/3)];true]]==1;you would win;you wouldnt win]
+
+
+
+    code: `
+    $clientTyping
+    $reply[$messageID;true]
     
     
     
@@ -48,7 +111,7 @@ module.exports = [
         You won $$math[$truncate[$noMentionMessage]*3] and now have $$getGlobalUserVar[Money;$authorID;Bank]
         $setGlobalUserVar[Money;$math[($truncate[$noMentionMessage]*3)+$getGlobalUserVar[Money;$authorID;Bank]];$authorID;Bank]
   
-        $onlyIf[$round[$random[1;$math[$truncate[$noMentionMessage]**(1/3)];yes]]==1;
+        $onlyIf[$round[$random[1;$math[$truncate[$noMentionMessage]**(1/3)];true]]==1;
         You did not win, sad. Now you have $$getGlobalUserVar[Money;$authorID;Bank]];
       ]}
       {color:#80ff80}
@@ -92,16 +155,4 @@ module.exports = [
     }]
     `,
   },
-];
-/*
-
-;{"embeds": " 
-  {newEmbed:
-    {title:ganbgalbsblkgklbsbakgbakls}
-    {description:$if[$round[$random[1;$math[$noMentionMessage**(1/3)];yes]]==1;you would win;you wouldnt win]}
-    {color:#80ff80}}",
-  "reply": {"messageReference": "$messageID"}
-  }]
-
-$if[$round[$random[1;$math[$noMentionMessage**(1/3)];yes]]==1;you would win;you wouldnt win]
 */

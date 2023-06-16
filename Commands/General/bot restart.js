@@ -4,7 +4,7 @@ module.exports = [
     name: "bot restart",
     code: `
       $clientTyping
-      $reply[$messageID;yes]
+      $reply[$messageID;true]
   
   
   

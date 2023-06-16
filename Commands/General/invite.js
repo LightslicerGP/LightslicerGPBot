@@ -3,7 +3,7 @@ module.exports = [
     name: "invite",
     code: `
       $clientTyping    
-      $reply[$messageID;yes]
+      $reply[$messageID;true]
   
   
   

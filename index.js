@@ -1,6 +1,8 @@
 const aoijs = require("aoi.js");
+const { Panel } = require("@akarui/aoi.panel");
 const { AoiClient } = require("aoi.js");
 const { token } = require(`./config.json`);
+const { panel_password } = require(`./config.json`);
 
 const bot = new AoiClient({
   token: token,
@@ -96,6 +98,21 @@ const bot = new AoiClient({
 
 new aoijs.LoadCommands(bot).load(bot.cmd, "./Commands/", false);
 
+const panel = new Panel({
+  username: "LightslicerGP", // username for logging in
+  password: panel_password, // password for logging in
+  secret: require("crypto").randomBytes(16).toString("hex"), // session secret
+  port: 3000, // port on which website is hosted.
+  bot: bot, // your aoi.js client
+  mainFile: "index.js", // Main file where code is running.Not required, default taken from package.json
+  commands: "./commands", // folder name in which all the edit needing files are there.
+  interaction: "./interactions", // interactions folder
+  theme: "black",
+});
+panel.loadPanel(); // Load The Panel
+
+panel.onError(); // Will detect errors, and send it to aoi.panel's error page.
+
 //DEPRICATED 6/4/23 9:43 pm
 //bot.onInteractionCreate(); // Allows to create slash commands
 //bot.onJoined() // Allows to log users joining servers
@@ -122,10 +139,23 @@ bot.command(
     category: "Developer Command",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
-    
-    Here:
-    $getGlobalUserVar[Profile;$authorID;People]
+    $reply[$messageID;true]
+
+
+
+    $color[1;#80bfff]
+    $title[1;
+      This ID's Username is $userTag[$message]
+    ]
+  
+  
+  
+    $onlyIf[$isNumber[$message]==true;{"embeds": "
+        {newEmbed: 
+          {title:This Username's ID is $findUser[$message;false]}
+          {color:#80bfff}}",
+        "reply": {"messageReference": "$messageID"}
+    }]
     `, //https://discord.com/channels/773352845738115102/1002206443979673731/1013860375348924476
     // $writeFile[temp.txt;this is inside the file inside the host] $createFile[this is inside the file in the message;temp.txt]
   },
@@ -134,43 +164,16 @@ bot.command(
     name: "json",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
 
 
 
     \`\`\`json
 $getObject\`\`\`
-        $createObject[$getGlobalUserVar[Profile]]
+        $createObject[$getGlobalUserVar[Profile;$authorID;People]]
     `,
   }
 );
-
-bot.command({
-  name: "add-select-menu",
-  code: `
-Select an option.
-
-$addSelectMenu[1;yourCustomID;This is a placeholder!;1;1;false;A Option:Description of option B:anotherCustomID:false;B Option:Description of option B:andAnotherCustomID:true]
-`,
-});
-
-bot.interactionCommand({
-  name: "yourCustomID",
-  prototype: "selectMenu",
-  code: `
-$interactionReply[Hello! :);;;;everyone;false]
-$onlyIf[$interactionData[values[0]]==anotherCustomID;]
-`,
-});
-
-bot.interactionCommand({
-  name: "yourCustomID",
-  prototype: "selectMenu",
-  code: `
-$interactionReply[Hello! :);;;;everyone;false]
-$onlyIf[$interactionData[values[0]]==andAnotherCustomID;]
-`,
-});
 
 bot.variables(
   {
@@ -233,7 +236,8 @@ bot.variables(
 bot.readyCommand({
   channel: "",
   code: `
-    $log[Ready on $userTag[$clientID] - $parseDate[$math[$dateStamp-14400000];date]]
+    $log[Ready on $userTag[$clientID] - $parseDate[$math[$dateStamp-$get[time]];date]]
+    $let[time;$if[$checkCondition[$month==january||$month==february||$month==march||$month==april||$month==may||$month==june]==true;14400000;18000000]]
     `,
 }); //18000000 = winter, 14400000 = summer
 

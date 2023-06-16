@@ -4,7 +4,7 @@ module.exports = [
     aliases: ["setbal"],
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
     $setGlobalUserVar[Money;$truncate[$noMentionMessage];$mentioned[1];Bank]
   
   

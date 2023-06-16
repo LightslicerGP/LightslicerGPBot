@@ -3,7 +3,7 @@ module.exports = [
     name: "profile set",
     code: `
   $clientTyping
-  $reply[$messageID;yes]
+  $reply[$messageID;true]
 
 
 
@@ -22,7 +22,7 @@ module.exports = [
     name: "profile set bio",
     code: `
   $clientTyping
-  $reply[$messageID;yes]
+  $reply[$messageID;true]
 
 
 
@@ -48,7 +48,7 @@ module.exports = [
     name: "profile set birthday",
     code: `
   $clientTyping
-  $reply[$messageID;yes]
+  $reply[$messageID;true]
 
 
 
@@ -93,7 +93,7 @@ module.exports = [
     name: "profile set interests",
     code: `
   $clientTyping
-  $reply[$messageID;yes]
+  $reply[$messageID;true]
 
 
 
@@ -128,7 +128,7 @@ module.exports = [
     name: "profile set youtube",
     code: `
   $clientTyping
-  $reply[$messageID;yes]
+  $reply[$messageID;true]
 
 
 
@@ -154,7 +154,7 @@ module.exports = [
     name: "profile set site",
     code: `
   $clientTyping
-  $reply[$messageID;yes]
+  $reply[$messageID;true]
   $color[#ff8080]
   $if[$isValidLink[$noMentionMessage]==true;
     Your profile site link is now: $noMentionMessage

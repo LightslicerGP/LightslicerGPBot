@@ -4,7 +4,7 @@ module.exports = [
     name: "tweet",
     code: `
       $clientTyping
-      $reply[$messageID;yes]
+      $reply[$messageID;true]
   
   
   

@@ -10,7 +10,7 @@ module.exports = [
     name: "$alwaysExecute",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
 
 
 

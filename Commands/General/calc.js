@@ -4,7 +4,7 @@ module.exports = [
     name: "calc",
     code: `
       $clientTyping
-      $reply[$messageID;yes]
+      $reply[$messageID;true]
   
   
   

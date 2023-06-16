@@ -1,10 +1,10 @@
 module.exports = [
   {
-    //when doing this, doing #bal uses the mainsql not banksql, untill you do #baltop or #balset then it fixes?????
+    //when doing this, doing #bal uses the mainsql not banksql, untill you do #baltop or #balset then it fixes????? - shouldve said fixed, 6/8/23, well its 6/9/23 now lol
     name: "daily",
     code: `
   $clientTyping
-  $reply[$messageID;yes]
+  $reply[$messageID;true]
 
 
 

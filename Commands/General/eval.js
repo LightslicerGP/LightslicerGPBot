@@ -3,7 +3,7 @@ module.exports = [
     name: "eval",
     code: `
       $clientTyping
-      $reply[$messageID;yes]
+      $reply[$messageID;true]
   
   
   

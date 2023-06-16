@@ -4,7 +4,7 @@ module.exports = [
     aliases: ["balreset"],
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
   
   
   

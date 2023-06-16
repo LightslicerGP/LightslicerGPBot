@@ -4,7 +4,7 @@ module.exports = [
     aliases: ["give"],
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
   
   
   
@@ -14,7 +14,7 @@ module.exports = [
     ]
     
     $awaitMessages[$channelID;$authorID;
-      10s;yes,y,no,n;yes,yes,no,no;{"embeds": "
+      10s;true,y,false,n;true,true,false,false;{"embeds": "
         {newEmbed:
           {title:No reply, aborted transaction}
           {color:#80ff80}}",
@@ -68,7 +68,7 @@ module.exports = [
     type: "awaited",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
   
   
   
@@ -88,7 +88,7 @@ module.exports = [
     type: "awaited",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
   
   
   

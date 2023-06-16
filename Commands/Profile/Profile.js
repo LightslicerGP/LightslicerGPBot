@@ -3,7 +3,7 @@ module.exports = [
     name: "profile",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
   
   
   

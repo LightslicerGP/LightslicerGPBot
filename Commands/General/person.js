@@ -1,23 +1,25 @@
 module.exports = [
   {
-    //doesnt work, the "if" statement goes from the inside out so it fails when you do the second option so use "onlyif"?
     name: "person",
     code: `
       $clientTyping
-      $reply[$messageID;yes]
-  
-  
-  
+      $reply[$messageID;true]
+
+
+
       $color[1;#80bfff]
       $title[1;
-          This user is $userTag[$noMentionMessage]!
+        This ID's Username is $userTag[$message]
       ]
-  
-      $onlyIf[$isNumber[$noMentionMessage]==true;
-          $title[1;
-              This user's ID is $findUser[$noMentionMessage;no]!
-          ]
-      ]
+    
+    
+    
+      $onlyIf[$isNumber[$message]==true;{"embeds": "  
+          {newEmbed: 
+            {title:This Username's ID is $findUser[$message;false]}
+            {color:#80bfff}}",
+          "reply": {"messageReference": "$messageID"}
+      }]
       `,
   },
 ];

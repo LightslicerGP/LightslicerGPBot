@@ -4,7 +4,7 @@ module.exports = [
     name: "bal",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
   
   
   

@@ -3,7 +3,7 @@ module.exports = [
     name: "animal",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
 
 
 
@@ -23,7 +23,7 @@ List of animals you can do:
     name: "animal dog",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
 
 
 
@@ -43,7 +43,7 @@ List of animals you can do:
     name: "animal cat",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
 
 
 
@@ -63,7 +63,7 @@ List of animals you can do:
     name: "animal bird",
     code: `
     $clientTyping
-    $reply[$messageID;yes]
+    $reply[$messageID;true]
 
 
 

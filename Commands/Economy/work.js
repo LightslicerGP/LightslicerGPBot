@@ -4,7 +4,7 @@ module.exports = [
     name: "work",
     code: `
   $clientTyping
-  $reply[$messageID;yes]
+  $reply[$messageID;true]
 
 
 
@@ -12,11 +12,11 @@ module.exports = [
   $title[
     You have done some work!
   ]
-  $description[Now you have been paid $$numberSeparator[$random[7;121;no]]. Now you have a total of $$numberSeparator[$getGlobalUserVar[Money;$authorID;Bank]] in your balance]
+  $description[Now you have been paid $$numberSeparator[$random[7;121;false]]. Now you have a total of $$numberSeparator[$getGlobalUserVar[Money;$authorID;Bank]] in your balance]
 
 
 
-  $setGlobalUserVar[Money;$sum[$getGlobalUserVar[Money;$authorID;Bank];$random[7;121;no]];$authorID;Bank]
+  $setGlobalUserVar[Money;$sum[$getGlobalUserVar[Money;$authorID;Bank];$random[7;121;false]];$authorID;Bank]
 
 
 
@@ -33,7 +33,7 @@ module.exports = [
 
 /*
 $clientTyping
-$reply[$messageID;yes]
+$reply[$messageID;true]
 
 
 
@@ -42,12 +42,12 @@ $title[
   You have done some work!
 ]
 $description[
-  Now you have been paid $$numberSeparator[$random[7;121;no]]. Now you have a total of $$numberSeparator[$getGlobalUserVar[Money;$authorID;Bank]] in your balance.
+  Now you have been paid $$numberSeparator[$random[7;121;false]]. Now you have a total of $$numberSeparator[$getGlobalUserVar[Money;$authorID;Bank]] in your balance.
 ]
 
 
 
-$setGlobalUserVar[Money;$sum[$getGlobalUserVar[Money;$authorID;Bank];$random[7;121;no]];$authorID;Bank]
+$setGlobalUserVar[Money;$sum[$getGlobalUserVar[Money;$authorID;Bank];$random[7;121;false]];$authorID;Bank]
 
 
 
